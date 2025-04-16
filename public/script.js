@@ -1,25 +1,33 @@
-let username = "Usuario"; // Nombre por defecto
+// Conexión al servidor con Socket.IO
+const socket = io();
+
+let username = "Usuario"; // Nombre de usuario por defecto
 let isLightMode = false; // Modo inicial oscuro
 
 // Función para enviar un mensaje
 function sendMessage() {
   const input = document.getElementById("messageInput");
-  const chatMessages = document.getElementById("chatMessages");
   const message = input.value.trim();
 
   if (message) {
-    // Crear un nuevo mensaje
-    const messageElement = document.createElement("p");
-    messageElement.innerHTML = `<span class="username">${username}</span>: ${message}`;
-    chatMessages.appendChild(messageElement);
-
-    // Desplazar automáticamente hacia abajo
-    chatMessages.scrollTop = chatMessages.scrollHeight;
+    // Enviar mensaje al servidor
+    socket.emit("chat message", { username, message });
 
     // Limpiar el casillero de entrada
     input.value = "";
   }
 }
+
+// Escuchar mensajes del servidor y mostrarlos en el chat
+socket.on("chat message", (data) => {
+  const chatMessages = document.getElementById("chatMessages");
+  const messageElement = document.createElement("p");
+  messageElement.innerHTML = `<span class="username">${data.username}</span>: ${data.message}`;
+  chatMessages.appendChild(messageElement);
+
+  // Desplazar automáticamente hacia abajo
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+});
 
 // Actualizar todos los mensajes con el nuevo nombre
 function updateAllMessages() {
