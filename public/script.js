@@ -181,3 +181,29 @@ document.getElementById("messageInput").addEventListener("keydown", (event) => {
     event.preventDefault(); // Evita el salto de línea
   }
 });
+
+// Mostrar/Ocultar el menú para cambiar fondo
+function toggleBackgroundMenu() {
+  const backgroundMenu = document.getElementById("backgroundMenu");
+  backgroundMenu.style.display = backgroundMenu.style.display === "none" ? "block" : "none";
+}
+
+// Abrir el selector de archivos para cambiar el fondo
+function triggerBackgroundUpload() {
+  document.getElementById("backgroundFileInput").click();
+}
+
+// Cambiar el fondo de pantalla del chat
+function changeBackground() {
+  const backgroundFileInput = document.getElementById("backgroundFileInput");
+  const file = backgroundFileInput.files[0];
+
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = function () {
+      const chat = document.querySelector(".chat");
+      chat.style.backgroundImage = `url(${reader.result})`;
+    };
+    reader.readAsDataURL(file);
+  }
+}

@@ -3,10 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TYNITE Chat</title>
+  <title>Tynite web</title>
   <!-- Importar la fuente Poppins -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="TYNITE-logo.png">
 </head>
 <body>
   <div class="container">
@@ -18,9 +20,9 @@
       <div class="chat-input">
         <input type="text" id="messageInput" placeholder="Escribe tu mensaje...">
         <button onclick="sendMessage()">Enviar</button>
-        <!-- Botón para enviar imágenes/videos -->
+        <!-- Botón para enviar archivos -->
         <button onclick="openFilePicker()">+</button>
-        <input type="file" id="fileInput" style="display: none;" accept="image/*,video/*" onchange="sendFile()">
+        <input type="file" id="fileInput" style="display: none;" accept="image/*,video/*,audio/*,.mp4,.gif" onchange="sendFile()">
       </div>
     </div>
 
@@ -28,7 +30,7 @@
     <div class="sidebar">
       <!-- Logo en la parte superior -->
       <div class="logo-container">
-        <img src="TYNITE-text-original.png" alt="Logo TYNITE" class="logo">
+        <img src="TYNITE-logo-text.png" alt="Logo TYNITE" class="logo">
       </div>
 
       <!-- Botones de la barra lateral -->
@@ -59,11 +61,18 @@
           </div>
         </div>
       </div>
+      <!-- Nuevo botón Cambiar Fondo -->
+      <div class="sidebar-item">
+        <button onclick="toggleBackgroundMenu()">Cambiar Fondo</button>
+        <div class="background-menu" id="backgroundMenu" style="display: none;">
+          <button class="upload-button" onclick="triggerBackgroundUpload()">Subir Archivo</button>
+          <input type="file" id="backgroundFileInput" style="display: none;" accept="image/png,image/jpeg" onchange="changeBackground()">
+        </div>
+      </div>
     </div>
   </div>
 
   <script src="/socket.io/socket.io.js"></script>
   <script src="script.js"></script>
-
 </body>
 </html>
