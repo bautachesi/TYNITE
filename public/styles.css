@@ -1,193 +1,225 @@
 /* Estilo general */
 body {
-    margin: 0;
-    font-family: 'Poppins', Arial, sans-serif; /* Fuente Poppins */
-    background-color: #111; /* Fondo principal */
-    color: #fff; /* Texto por defecto */
-    display: flex;
-    height: 100vh;
-  }
-  
-  .container {
-    display: flex;
-    width: 100%;
-  }
-  
-  /* Área de chat */
-  .chat {
-    flex: 4;
-    display: flex;
-    flex-direction: column;
-    border-right: 1px solid #444; /* Línea divisoria */
-    background-image: url('Fondo.png'); /* Fondo personalizado */
-    background-size: cover;
-  }
-  
-  .chat-messages {
-    flex: 1;
-    overflow-y: auto;
-    padding: 10px;
-    background-color: transparent; /* Fondo transparente para mostrar la imagen */
-    border-bottom: 1px solid #444; /* Línea inferior */
-  }
-  
-  .chat-messages p {
-    margin: 5px 0;
-    padding: 5px;
-    background-color: #444;
-    color: #fff;
-    border: 1px solid #444; /* Borde de los mensajes */
-    word-wrap: break-word; /* Evita que los mensajes se estiren horizontalmente */
-    max-width: 300px; /* Limita la anchura de los mensajes */
-    border-radius: 5px;
-    line-break: anywhere; /* Permite romper líneas en cualquier lugar */
-  }
-  
-  /* Estilo para el nombre del usuario */
-  .chat-messages p span.username {
-    color: #002266; /* Azul oscuro */
-    font-weight: bold;
-  }
-  
-  .chat-input {
-    display: flex;
-    padding: 10px;
-    background-color: #222;
-  }
-  
-  .chat-input input {
-    flex: 1;
-    padding: 10px;
-    border: 1px solid #444;
-    border-radius: 5px;
-    background-color: #444;
-    color: #fff;
-  }
-  
-  .chat-input button {
-    margin-left: 10px;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 0; /* Esquinas cuadradas */
-    background-color: #444;
-    color: #fff;
-    cursor: pointer;
-  }
-  
-  .chat-input button:hover {
-    background-color: #555;
-  }
-  
-  /* Barra lateral */
-  .sidebar {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    padding: 20px;
-    background-color: #222;
-  }
-  
-  .logo-container {
-    margin-bottom: 20px;
-    text-align: center;
-  }
-  
-  .logo {
-    max-width: 80%; /* Ajustamos el tamaño del logo */
-    height: auto;
-  }
-  
-  .sidebar-item {
-    width: 100%;
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .sidebar button {
-    width: 80%;
-    margin: 10px 0;
-    padding: 15px;
-    border: none;
-    border-radius: 0; /* Esquinas cuadradas */
-    background-color: #002266; /* Azul oscuro */
-    color: #fff;
-    font-size: 16px;
-    cursor: pointer;
-  }
-  
-  .sidebar button:hover {
-    background-color: #003399;
-  }
-  
-  /* Mini-menú para cambiar nombre */
-  .name-menu {
-    margin-top: 10px;
-    padding: 10px;
-    background-color: #111; /* Fondo del menú */
-    border: 1px solid #444; /* Línea del menú */
-  }
-  
-  .name-menu input {
-    width: 90%; /* Ajustar el ancho del casillero */
-    padding: 8px;
-    margin-bottom: 10px;
-    border: 1px solid #444;
-    border-radius: 0; /* Esquinas cuadradas */
-    background-color: #222;
-    color: #fff;
-  }
-  
-  .name-menu .save-button {
-    width: 100%;
-    padding: 10px;
-    border: none;
-    border-radius: 0; /* Esquinas cuadradas */
-    background-color: #28a745; /* Verde */
-    color: #fff;
-    font-size: 14px;
-    cursor: pointer;
-  }
-  
-  .name-menu .save-button:hover {
-    background-color: #218838;
-  }
-  
-  /* Mini-menú de ajustes */
-  .settings-menu {
-    margin-top: 10px;
-    padding: 10px;
-    background-color: #111;
-    border: 1px solid #444;
-  }
-  
-  .settings-button {
-    width: 100%;
-    margin: 5px 0;
-    padding: 10px;
-    border: none;
-    border-radius: 0;
-    background-color: #002266;
-    color: #fff;
-    font-size: 14px;
-    cursor: pointer;
-  }
-  
-  .settings-button:hover {
-    background-color: #003399;
-  }
-  
-  .color-palette {
-    display: grid;
-    grid-template-columns: repeat(5, 25px); /* 5 colores por fila */
-    gap: 5px; /* Espaciado entre los colores */
-    margin-top: 10px;
-  }
-  
-  .color-option {
-    width: 25px;
-    height: 25px;
-    border: 1px solid #444;
-    cursor: pointer;
-  }
+  margin: 0;
+  font-family: 'Poppins', Arial, sans-serif; /* Fuente Poppins */
+  background-color: #111; /* Fondo principal */
+  color: #fff; /* Texto por defecto */
+  display: flex;
+  height: 100vh;
+}
+
+.container {
+  display: flex;
+  width: 100%;
+}
+
+/* Área de chat */
+.chat {
+  flex: 4;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #313131; /* Línea divisoria */
+  background-image: url('Fondo.png'); /* Fondo personalizado */
+  background-size: cover;
+}
+
+.chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px;
+  background-color: transparent; /* Fondo transparente para mostrar la imagen */
+  border-bottom: 1px solid #444; /* Línea inferior */
+}
+
+.chat-messages p {
+  margin: 5px 0;
+  padding: 5px;
+  background-color: #00a2ff;
+  color: #fff;
+  border: 0px solid #2d85b8; /* Borde de los mensajes */
+  word-wrap: break-word; /* Evita que los mensajes se estiren horizontalmente */
+  max-width: 300px; /* Limita la anchura de los mensajes */
+  border-radius: 5px;
+  line-break: anywhere; /* Permite romper líneas en cualquier lugar */
+}
+
+/* Estilo para el nombre del usuario */
+.chat-messages p span.username {
+  color: #ffffff; /* Azul oscuro */
+  font-weight: bold;
+}
+
+/* Estilo para mensajes con imágenes/videos */
+.chat-messages p img,
+.chat-messages p video {
+  max-width: 300px; /* Limitar el tamaño del contenido multimedia */
+  border-radius: 5px;
+  margin-top: 5px;
+}
+
+.chat-input {
+  display: flex;
+  padding: 10px;
+  background-color: #222;
+}
+
+.chat-input input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #222;
+  border-radius: 5px;
+  background-color: #111;
+  color: #fff;
+}
+
+.chat-input button {
+  margin-left: 10px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 15px; /* Botones redondeados */
+  background-color: #111;
+  color: #fff;
+  cursor: pointer;
+}
+
+.chat-input button:hover {
+  background-color: #333;
+}
+
+/* Barra lateral */
+.sidebar {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 20px;
+  background-color: #111;
+}
+
+.logo-container {
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.logo {
+  max-width: 60%; /* Ajustamos el tamaño del logo */
+  height: auto;
+}
+
+.sidebar-item {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.sidebar button {
+  width: 80%;
+  margin: 10px 0;
+  padding: 15px;
+  border: none;
+  border-radius: 15px; /* Botones redondeados */
+  background-color: #464646; /* Azul oscuro */
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.sidebar button:hover {
+  background-color: #696969;
+}
+
+/* Mini-menú para cambiar nombre */
+.name-menu {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #111; /* Fondo del menú */
+  border: 1px solid #222; /* Línea del menú */
+  border-radius: 10px; /* Menús redondeados */
+}
+
+.name-menu.light-mode {
+  background-color: #fff; /* Fondo blanco para Light Mode */
+  border: 1px solid #ccc; /* Bordes claros */
+}
+
+.name-menu input {
+  width: 90%; /* Ajustar el ancho del casillero */
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #222;
+  border-radius: 5px; /* Casilleros redondeados */
+  background-color: #111;
+  color: #fff;
+}
+
+.name-menu input.light-mode {
+  background-color: #fff; /* Color blanco */
+  color: #000; /* Texto negro */
+}
+
+.name-menu .save-button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 15px; /* Botones redondeados */
+  background-color: #00b7ff; /* Verde */
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.name-menu .save-button:hover {
+  background-color: #00b7ff;
+}
+
+/* Mini-menú de ajustes */
+.settings-menu {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #111;
+  border: 1px solid #222;
+  border-radius: 10px; /* Menús redondeados */
+}
+
+.settings-menu.light-mode {
+  background-color: #fff; /* Fondo blanco para Light Mode */
+  border: 1px solid #ccc; /* Bordes claros */
+}
+
+.settings-button {
+  width: 100%;
+  margin: 5px 0;
+  padding: 10px;
+  border: none;
+  border-radius: 15px; /* Botones redondeados */
+  background-color: #00b7ff;
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.settings-button:hover {
+  background-color: #008cff;
+}
+
+/* Paleta de colores */
+.color-palette {
+  display: grid;
+  grid-template-columns: repeat(4, 20px); /* 4 colores por fila */
+  gap: 5px; /* Espaciado entre los colores */
+  margin-top: 10px;
+  justify-content: center; /* Centrar la paleta */
+}
+
+.color-option {
+  width: 20px; /* Reducir tamaño de los colores */
+  height: 20px;
+  border: 1px solid #222;
+  cursor: pointer;
+  border-radius: 50%; /* Hacer los colores circulares */
+}
+
+.color-palette.hidden {
+  display: none; /* Ocultar menú de colores */
+}
