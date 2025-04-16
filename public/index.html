@@ -18,6 +18,9 @@
       <div class="chat-input">
         <input type="text" id="messageInput" placeholder="Escribe tu mensaje...">
         <button onclick="sendMessage()">Enviar</button>
+        <!-- Botón para enviar imágenes/videos -->
+        <button onclick="openFilePicker()">+</button>
+        <input type="file" id="fileInput" style="display: none;" accept="image/*,video/*" onchange="sendFile()">
       </div>
     </div>
 
@@ -25,7 +28,7 @@
     <div class="sidebar">
       <!-- Logo en la parte superior -->
       <div class="logo-container">
-        <img src="TYNITE-Text.png" alt="Logo TYNITE" class="logo">
+        <img src="TYNITE-text-original.png" alt="Logo TYNITE" class="logo">
       </div>
 
       <!-- Botones de la barra lateral -->
