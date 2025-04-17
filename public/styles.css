@@ -5,12 +5,187 @@ body {
   background-color: #111; /* Fondo principal */
   color: #fff; /* Texto por defecto */
   display: flex;
+  flex-direction: column; /* Para que el header esté siempre arriba */
   height: 100vh;
 }
 
 .container {
   display: flex;
+  flex: 1; /* Hacer que el contenedor ocupe todo el espacio restante */
   width: 100%;
+  overflow: hidden; /* Evitar desbordamientos */
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: flex-start; /* Botones alineados a la izquierda */
+  align-items: center;
+  background-color: #111;
+  padding: 10px 20px;
+  height: 60px; /* Ajuste del tamaño del header */
+  border-bottom: 1px solid #313131;
+  position: fixed; /* Fijo en la parte superior */
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100; /* Asegurar que esté por encima del contenido */
+}
+
+.logo-header {
+  flex: 1;
+}
+
+.logo-header img {
+  max-height: 40px; /* Ajustar el tamaño del logo */
+}
+
+.header-buttons {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start; /* Botones alineados a la izquierda */
+  gap: 10px; /* Espaciado entre botones */
+}
+
+.header-buttons button {
+  margin: 0;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  background-color: #464646;
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.header-buttons button:hover {
+  background-color: #696969;
+}
+
+/* Mini-menús flotantes */
+.menu {
+  position: absolute;
+  background-color: #111;
+  border: 1px solid #222;
+  border-radius: 10px;
+  padding: 5px;
+  display: none;
+  z-index: 110;
+  width: 150px;
+}
+
+.menu.name-menu {
+  top: 70px;
+  left: 10px; /* Debajo del botón "Cambiar nombre" */
+}
+
+.menu.settings-menu {
+  top: 70px;
+  left: 130px; /* Debajo del botón "Ajustes" */
+}
+
+.menu.background-menu {
+  top: 70px;
+  left: 250px; /* Debajo del botón "Cambiar Fondo" */
+}
+
+.menu .save-button {
+  width: 120px; /* Botón más pequeño */
+  padding: 8px;
+  border: none;
+  border-radius: 10px;
+  background-color: #00b7ff;
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.menu .save-button:hover {
+  background-color: #008cff;
+}
+
+/* Estilo del casillero de texto para cambiar nombre */
+.menu.name-menu input#newNameInput {
+  width: 85%; /* Ajustar el ancho para que no sobresalga del mini-menú */
+  padding: 10px;
+  margin-bottom: 10px; /* Espaciado inferior */
+  border: 1px solid #333333; /* Borde del casillero */
+  border-radius: 5px; /* Bordes redondeados */
+  background-color: #111111; /* Fondo del casillero */
+  color: #ffffff; /* Texto blanco */
+  font-size: 14px;
+}
+
+.menu.name-menu input#newNameInput::placeholder {
+  color: #aaaaaa; /* Color gris para el texto del placeholder */
+  font-style: italic;
+  content: "Nombre..."; /* Texto del placeholder */
+}
+
+/* Estilo para botones específicos */
+.menu .settings-button,
+.menu .upload-button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 3px; /* Bordes redondeados */
+  background-color: #00b7ff; /* Fondo celeste */
+  color: #ffffff; /* Texto blanco */
+  font-weight: bold; /* Fuente negrita */
+  font-size: 14px;
+  cursor: pointer;
+  margin-bottom: 5px; /* Espaciado entre botones */
+}
+
+.menu .settings-button:hover,
+.menu .upload-button:hover {
+  background-color: #008cff; /* Fondo más oscuro al pasar el cursor */
+}
+
+/* Sidebar */
+.sidebar {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: #111;
+  margin-top: 60px;
+}
+
+.sidebar img {
+  margin-top: 70px;
+  max-width: 80px;
+  border-radius: 50%;
+}
+
+.user-info {
+  text-align: center;
+  color: #fff;
+  margin-top: 20px;
+}
+
+#genderButton {
+  margin-top: 10px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  background-color: #00b7ff;
+  color: #fff;
+  cursor: pointer;
+}
+
+#genderButton.female {
+  background-color: #ff002b;
+  color: #fff;
+}
+
+/* Texto bajo el botón de género */
+.sidebar .footer-text {
+  margin-top: 170px; /* Espaciado superior */
+  color: #27343a; /* Color celeste */
+  font-size: 12px; /* Tamaño pequeño */
+  text-align: center;
 }
 
 /* Área de chat */
@@ -18,42 +193,41 @@ body {
   flex: 4;
   display: flex;
   flex-direction: column;
-  border-right: 1px solid #313131; /* Línea divisoria */
-  background-image: url('Fondo.png'); /* Fondo personalizado */
+  border-right: 1px solid #313131;
+  background-image: url('Fondo.png');
   background-size: cover;
+  margin-top: 60px;
 }
 
 .chat-messages {
   flex: 1;
   overflow-y: auto;
   padding: 10px;
-  background-color: transparent; /* Fondo transparente para mostrar la imagen */
-  border-bottom: 1px solid #444; /* Línea inferior */
+  background-color: transparent;
+  border-bottom: 1px solid #444;
+  padding-top: 17px; /* Separación entre globos y header */
 }
 
 .chat-messages p {
-  margin: 5px 0;
-  padding: 5px;
+  margin: 10px 0;
+  padding: 15px;
   background-color: #00a2ff;
   color: #fff;
-  border: 0px solid #2d85b8; /* Borde de los mensajes */
-  word-wrap: break-word; /* Evita que los mensajes se estiren horizontalmente */
-  max-width: 300px; /* Limita la anchura de los mensajes */
-  border-radius: 5px;
-  line-break: anywhere; /* Permite romper líneas en cualquier lugar */
+  border-radius: 10px;
+  max-width: 400px;
+  word-wrap: break-word;
+  line-break: anywhere;
 }
 
-/* Estilo para el nombre del usuario */
 .chat-messages p span.username {
-  color: #ffffff; /* Azul oscuro */
+  color: #ffffff;
   font-weight: bold;
 }
 
-/* Estilo para mensajes con imágenes/videos */
 .chat-messages p img,
 .chat-messages p video {
-  max-width: 300px; /* Limitar el tamaño del contenido multimedia */
-  border-radius: 5px;
+  max-width: 400px;
+  border-radius: 10px;
   margin-top: 5px;
 }
 
@@ -76,7 +250,7 @@ body {
   margin-left: 10px;
   padding: 10px 20px;
   border: none;
-  border-radius: 15px; /* Botones redondeados */
+  border-radius: 15px;
   background-color: #111;
   color: #fff;
   cursor: pointer;
@@ -86,164 +260,18 @@ body {
   background-color: #333;
 }
 
-/* Barra lateral */
-.sidebar {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  padding: 20px;
-  background-color: #111;
-}
-
-.logo-container {
-  margin-bottom: 15px;
-  text-align: center;
-}
-
-.logo {
-  max-width: 60%; /* Ajustamos el tamaño del logo */
-  height: auto;
-}
-
-.sidebar-item {
-  width: 100%;
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.sidebar button {
-  width: 80%;
-  margin: 10px 0;
-  padding: 15px;
-  border: none;
-  border-radius: 15px; /* Botones redondeados */
-  background-color: #464646; /* Azul oscuro */
-  color: #fff;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-.sidebar button:hover {
-  background-color: #696969;
-}
-
-/* Mini-menú para cambiar nombre */
-.name-menu {
-  margin-top: 10px;
-  padding: 10px;
-  background-color: #111; /* Fondo del menú */
-  border: 1px solid #222; /* Línea del menú */
-  border-radius: 10px; /* Menús redondeados */
-}
-
-.name-menu.light-mode {
-  background-color: #fff; /* Fondo blanco para Light Mode */
-  border: 1px solid #ccc; /* Bordes claros */
-}
-
-.name-menu input {
-  width: 90%; /* Ajustar el ancho del casillero */
-  padding: 8px;
-  margin-bottom: 10px;
-  border: 1px solid #222;
-  border-radius: 5px; /* Casilleros redondeados */
-  background-color: #111;
-  color: #fff;
-}
-
-.name-menu input.light-mode {
-  background-color: #fff; /* Color blanco */
-  color: #000; /* Texto negro */
-}
-
-.name-menu .save-button {
-  width: 100%;
-  padding: 10px;
-  border: none;
-  border-radius: 15px; /* Botones redondeados */
-  background-color: #00b7ff; /* Verde */
-  color: #fff;
-  font-size: 14px;
-  cursor: pointer;
-}
-
-.name-menu .save-button:hover {
-  background-color: #00b7ff;
-}
-
-/* Mini-menú de ajustes */
-.settings-menu {
-  margin-top: 10px;
-  padding: 10px;
-  background-color: #111;
-  border: 1px solid #222;
-  border-radius: 10px; /* Menús redondeados */
-}
-
-.settings-menu.light-mode {
-  background-color: #fff; /* Fondo blanco para Light Mode */
-  border: 1px solid #ccc; /* Bordes claros */
-}
-
-.settings-button {
-  width: 100%;
-  margin: 5px 0;
-  padding: 10px;
-  border: none;
-  border-radius: 15px; /* Botones redondeados */
-  background-color: #00b7ff;
-  color: #fff;
-  font-size: 14px;
-  cursor: pointer;
-}
-
-.settings-button:hover {
-  background-color: #008cff;
-}
-
 /* Paleta de colores */
 .color-palette {
   display: grid;
-  grid-template-columns: repeat(4, 20px); /* 4 colores por fila */
-  gap: 5px; /* Espaciado entre los colores */
+  grid-template-columns: repeat(4, 1fr); /* Mejor distribución */
+  gap: 5px;
   margin-top: 10px;
-  justify-content: center; /* Centrar la paleta */
+  justify-content: center;
 }
 
 .color-option {
-  width: 20px; /* Reducir tamaño de los colores */
+  width: 20px;
   height: 20px;
-  border: 1px solid #222;
+  border-radius: 50%;
   cursor: pointer;
-  border-radius: 50%; /* Hacer los colores circulares */
-}
-
-.color-palette.hidden {
-  display: none; /* Ocultar menú de colores */
-}
-
-/* Nuevo botón Cambiar Fondo */
-.background-menu {
-  margin-top: 10px;
-  padding: 10px;
-  background-color: #111;
-  border: 1px solid #222;
-  border-radius: 10px;
-}
-
-.upload-button {
-  width: 100%;
-  padding: 10px;
-  border: none;
-  border-radius: 15px;
-  background-color: #00b7ff;
-  color: #fff;
-  font-size: 14px;
-  cursor: pointer;
-}
-
-.upload-button:hover {
-  background-color: #008cff;
 }

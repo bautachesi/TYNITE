@@ -4,6 +4,10 @@ const socket = io();
 let username = `Usuario${Math.floor(Math.random() * 1000)}`; // Nombre de usuario aleatorio
 let userColor = "#ffffff"; // Color predeterminado
 
+// Mostrar nombre de usuario y fecha de entrada
+document.getElementById("usernameDisplay").textContent = `Usuario: ${username}`;
+document.getElementById("entryDateDisplay").textContent = `Fecha de entrada: ${new Date().toLocaleTimeString()}`;
+
 // Notificar al servidor el nombre y color inicial
 socket.emit("user connected", { username, color: userColor });
 
@@ -77,6 +81,7 @@ socket.on("file upload", (data) => {
 function toggleNameMenu() {
   const nameMenu = document.getElementById("nameMenu");
   nameMenu.style.display = nameMenu.style.display === "none" ? "block" : "none";
+  nameMenu.style.left = `${document.querySelector('.header-buttons button:nth-child(1)').getBoundingClientRect().left}px`; // Posicionar debajo
 }
 
 // Función para guardar el nuevo nombre
@@ -87,6 +92,9 @@ function saveName() {
   if (newName) {
     const previousName = username;
     username = newName;
+
+    // Actualizar el nombre en el sidebar
+    document.getElementById("usernameDisplay").textContent = `Usuario: ${username}`;
 
     // Notificar al servidor el cambio de nombre
     socket.emit("name change", { previousName, newName });
@@ -112,6 +120,7 @@ socket.on("name change", (data) => {
 function toggleSettingsMenu() {
   const settingsMenu = document.getElementById("settingsMenu");
   settingsMenu.style.display = settingsMenu.style.display === "none" ? "block" : "none";
+  settingsMenu.style.left = `${document.querySelector('.header-buttons button:nth-child(2)').getBoundingClientRect().left}px`; // Posicionar debajo
 }
 
 // Función para alternar entre Light Mode y Dark Mode
@@ -186,6 +195,7 @@ document.getElementById("messageInput").addEventListener("keydown", (event) => {
 function toggleBackgroundMenu() {
   const backgroundMenu = document.getElementById("backgroundMenu");
   backgroundMenu.style.display = backgroundMenu.style.display === "none" ? "block" : "none";
+  backgroundMenu.style.left = `${document.querySelector('.header-buttons button:nth-child(3)').getBoundingClientRect().left}px`; // Posicionar debajo
 }
 
 // Abrir el selector de archivos para cambiar el fondo
@@ -205,5 +215,59 @@ function changeBackground() {
       chat.style.backgroundImage = `url(${reader.result})`;
     };
     reader.readAsDataURL(file);
+  }
+}
+
+// Alternar género
+function toggleGender() {
+  const genderButton = document.getElementById("genderButton");
+  if (genderButton.classList.contains("female")) {
+    genderButton.classList.remove("female");
+    genderButton.textContent = "Masculino";
+    genderButton.style.backgroundColor = "#87CEEB";
+  } else {
+    genderButton.classList.add("female");
+    genderButton.textContent = "Femenino";
+    genderButton.style.backgroundColor = "#FFC0CB";
+  }
+}
+
+function toggleLightMode() {
+  const lightModeButton = document.getElementById("lightModeButton");
+  const chat = document.querySelector(".chat");
+  const body = document.body;
+  const chatInput = document.querySelector(".chat-input");
+  const sidebar = document.querySelector(".sidebar");
+  const nameMenu = document.querySelector(".name-menu");
+  const settingsMenu = document.querySelector(".settings-menu");
+  const header = document.querySelector(".header");
+  const userInfo = document.querySelectorAll(".user-info p");
+
+  const isLightMode = body.classList.contains("light-mode");
+
+  if (isLightMode) {
+    // Volver a Dark Mode
+    body.classList.remove("light-mode");
+    body.style.backgroundColor = "#111";
+    chat.style.backgroundImage = "url('Fondo.png')";
+    chatInput.style.backgroundColor = "#222";
+    sidebar.style.backgroundColor = "#111";
+    nameMenu.classList.remove("light-mode");
+    settingsMenu.classList.remove("light-mode");
+    header.style.backgroundColor = "#111";
+    userInfo.forEach((element) => (element.style.color = "#ffffff"));
+    lightModeButton.textContent = "Light mode";
+  } else {
+    // Cambiar a Light Mode
+    body.classList.add("light-mode");
+    body.style.backgroundColor = "#fff";
+    chat.style.backgroundImage = "url('Fondo-2.png')";
+    chatInput.style.backgroundColor = "#fff";
+    sidebar.style.backgroundColor = "#fff";
+    nameMenu.classList.add("light-mode");
+    settingsMenu.classList.add("light-mode");
+    header.style.backgroundColor = "#ffffff";
+    userInfo.forEach((element) => (element.style.color = "#111111"));
+    lightModeButton.textContent = "Dark mode";
   }
 }

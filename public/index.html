@@ -11,6 +11,18 @@
   <link rel="icon" type="image/png" href="TYNITE-logo.png">
 </head>
 <body>
+  <!-- Header -->
+  <header class="header">
+    <div class="logo-header">
+      <img src="TYNITE-logo-text.png" alt="Logo TYNITE" class="logo">
+    </div>
+    <div class="header-buttons">
+      <button onclick="toggleNameMenu()">Cambiar nombre</button>
+      <button onclick="toggleSettingsMenu()">Ajustes</button>
+      <button onclick="toggleBackgroundMenu()">Cambiar Fondo</button>
+    </div>
+  </header>
+
   <div class="container">
     <!-- Área de chat -->
     <div class="chat">
@@ -28,48 +40,50 @@
 
     <!-- Barra lateral -->
     <div class="sidebar">
-      <!-- Logo en la parte superior -->
-      <div class="logo-container">
-        <img src="TYNITE-logo-text.png" alt="Logo TYNITE" class="logo">
+      <!-- Imagen del usuario -->
+      <img src="side-bar-image.png" alt="Imagen del usuario" class="sidebar-image">
+
+      <!-- Información del usuario -->
+      <div class="user-info">
+        <p id="usernameDisplay">Usuario: Usuario123</p>
+        <p id="entryDateDisplay">Fecha de entrada: 00:00</p>
+        <button id="genderButton" onclick="toggleGender()">Masculino</button>
       </div>
 
-      <!-- Botones de la barra lateral -->
-      <div class="sidebar-item">
-        <button onclick="toggleNameMenu()">Cambiar nombre</button>
-        <div class="name-menu" id="nameMenu" style="display: none;">
-          <label for="newNameInput">Nuevo nombre:</label>
-          <input type="text" id="newNameInput" placeholder="Escribe tu nuevo nombre">
-          <button class="save-button" onclick="saveName()">Guardar</button>
-        </div>
-      </div>
-      <div class="sidebar-item">
-        <button onclick="toggleSettingsMenu()">Ajustes</button>
-        <div class="settings-menu" id="settingsMenu" style="display: none;">
-          <button class="settings-button" onclick="toggleLightMode()" id="lightModeButton">Light mode</button>
-          <button class="settings-button" onclick="toggleColorPalette()">Cambiar color</button>
-          <div class="color-palette" id="colorPalette" style="display: none;">
-            <button class="color-option" style="background-color: red;" onclick="changeUsernameColor('red')"></button>
-            <button class="color-option" style="background-color: orange;" onclick="changeUsernameColor('orange')"></button>
-            <button class="color-option" style="background-color: yellow;" onclick="changeUsernameColor('yellow')"></button>
-            <button class="color-option" style="background-color: green;" onclick="changeUsernameColor('green')"></button>
-            <button class="color-option" style="background-color: blue;" onclick="changeUsernameColor('blue')"></button>
-            <button class="color-option" style="background-color: violet;" onclick="changeUsernameColor('violet')"></button>
-            <button class="color-option" style="background-color: pink;" onclick="changeUsernameColor('pink')"></button>
-            <button class="color-option" style="background-color: black;" onclick="changeUsernameColor('black')"></button>
-            <button class="color-option" style="background-color: white; color: black;" onclick="changeUsernameColor('white')"></button>
-            <button class="color-option" style="background-color: brown;" onclick="changeUsernameColor('brown')"></button>
-          </div>
-        </div>
-      </div>
-      <!-- Nuevo botón Cambiar Fondo -->
-      <div class="sidebar-item">
-        <button onclick="toggleBackgroundMenu()">Cambiar Fondo</button>
-        <div class="background-menu" id="backgroundMenu" style="display: none;">
-          <button class="upload-button" onclick="triggerBackgroundUpload()">Subir Archivo</button>
-          <input type="file" id="backgroundFileInput" style="display: none;" accept="image/png,image/jpeg" onchange="changeBackground()">
-        </div>
+      <!-- Texto de copyright -->
+      <div class="footer-text">
+        © 2025 Tynite / Bautista Monachesi
       </div>
     </div>
+  </div>
+
+  <!-- Mini-menús flotantes -->
+  <div class="menu name-menu" id="nameMenu" style="display: none;">
+    <label for="newNameInput">Nuevo nombre:</label>
+    <input type="text" id="newNameInput" placeholder="Nombre...">
+    <button class="save-button" onclick="saveName()">Guardar</button>
+  </div>
+
+  <div class="menu settings-menu" id="settingsMenu" style="display: none;">
+    <button class="settings-button" onclick="toggleLightMode()" id="lightModeButton">Light mode</button>
+    <button class="settings-button" onclick="toggleColorPalette()">Cambiar color</button>
+    <div class="color-palette" id="colorPalette" style="display: none;">
+      <button class="color-option" style="background-color: red;" onclick="changeUsernameColor('red')"></button>
+      <button class="color-option" style="background-color: orange;" onclick="changeUsernameColor('orange')"></button>
+      <button class="color-option" style="background-color: yellow;" onclick="changeUsernameColor('yellow')"></button>
+      <button class="color-option" style="background-color: green;" onclick="changeUsernameColor('green')"></button>
+      <button class="color-option" style="background-color: blue;" onclick="changeUsernameColor('blue')"></button>
+      <button class="color-option" style="background-color: violet;" onclick="changeUsernameColor('violet')"></button>
+      <button class="color-option" style="background-color: pink;" onclick="changeUsernameColor('pink')"></button>
+      <button class="color-option" style="background-color: black;" onclick="changeUsernameColor('black')"></button>
+      <button class="color-option" style="background-color: white; color: black;" onclick="changeUsernameColor('white')"></button>
+      <button class="color-option" style="background-color: brown;" onclick="changeUsernameColor('brown')"></button>
+    </div>
+  </div>
+
+  <div class="menu background-menu" id="backgroundMenu" style="display: none;">
+    <button class="upload-button" onclick="triggerBackgroundUpload()">Subir Archivo</button>
+    <input type="file" id="backgroundFileInput" style="display: none;" accept="image/png,image/jpeg" onchange="changeBackground()">
   </div>
 
   <script src="/socket.io/socket.io.js"></script>
